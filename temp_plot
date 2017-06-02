@@ -1,0 +1,29 @@
+#!/etc/python3.4
+import os
+from os.path import basename 
+from numpy import *
+import Gnuplot
+from Gnuplot import *
+import Tkinter,tkFileDialog , tkMessageBox
+root = Tkinter.Tk()
+root.withdraw()
+filename = tkFileDialog.askopenfile(title = '@@@@@@@@ FUEL PLOTS @@@@@@@@@' , mode='r')
+name = os.path.splitext(os.path.basename(filename.name))[0]
+print name
+
+######### Convert string data read from file to float for plotting #########
+
+A = [map(float,num.split()) for num in filename.readlines()[15:]]
+  
+######### Plot utility using Gnuplot ######## 
+
+g=Gnuplot.Gnuplot(persist=1)
+g.title('Fuel Temperature Variation')
+g.xlabel('Distance(mm)')
+g.ylabel('Temperature(Deg-Celsius)')
+g('set grid')
+g('set term jpeg')
+g('set out "name.jpeg"')
+data = Gnuplot.Data(A,with_ ='line',title="Fuel Temperature")
+g.plot(data)
+
