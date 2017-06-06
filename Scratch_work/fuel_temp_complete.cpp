@@ -34,21 +34,21 @@ cout<<setfill('*')<<setw(80)<<"*"<<endl;
   filename += ".txt";
   outputFile.open( filename.c_str() );
 
-outputFile<<setfill('*')<<setw(80)<<"*"<<endl;	
-outputFile<<"*"<<setfill(' ')<<setw(80)<<"*"<<endl;	
-outputFile<<"*"<<setfill(' ')<<setw(80)<<"*"<<endl;	
-outputFile<<"*"<<setfill(' ')<<setw(80)<<"*"<<endl;	
-outputFile<<"*"<<setfill(' ')<<setw(45)<<"Fuel_Temp ; TAPS-3&4"<<setfill(' ')<<setw(35)<<"*"<<endl;	
-outputFile<<"*"<<setfill(' ')<<setw(50)<<"Alok Jha ; alokjha@npcil.co.in"<<setfill(' ')<<setw(30)<<"*"<<endl;
-outputFile<<"*"<<setfill(' ')<<setw(52)<<"NUCLEAR POWER CORPORATION OF INDIA"<<setfill(' ')<<setw(28)<<"*"<<endl;
-outputFile<<"*"<<setfill(' ')<<setw(80)<<"*"<<endl;	
-outputFile<<"*"<<setfill(' ')<<setw(80)<<"*"<<endl;	
-outputFile<<"*"<<setfill(' ')<<setw(80)<<"*"<<endl;	
-outputFile<<setfill('*')<<setw(80)<<"*"<<endl;	
+outputFile<<setfill('#')<<setw(80)<<"#"<<endl;	
+outputFile<<"#"<<setfill(' ')<<setw(80)<<"#"<<endl;	
+outputFile<<"#"<<setfill(' ')<<setw(80)<<"#"<<endl;	
+outputFile<<"#"<<setfill(' ')<<setw(80)<<"#"<<endl;	
+outputFile<<"#"<<setfill(' ')<<setw(45)<<"Fuel_Temp ; TAPS-3&4"<<setfill(' ')<<setw(35)<<"#"<<endl;	
+outputFile<<"#"<<setfill(' ')<<setw(50)<<"Alok Jha ; alokjha@npcil.co.in"<<setfill(' ')<<setw(30)<<"#"<<endl;
+outputFile<<"#"<<setfill(' ')<<setw(52)<<"NUCLEAR POWER CORPORATION OF INDIA"<<setfill(' ')<<setw(28)<<"#"<<endl;
+outputFile<<"#"<<setfill(' ')<<setw(80)<<"#"<<endl;	
+outputFile<<"#"<<setfill(' ')<<setw(80)<<"#"<<endl;	
+outputFile<<"#"<<setfill(' ')<<setw(80)<<"#"<<endl;	
+outputFile<<setfill('#')<<setw(80)<<"#"<<endl;	
 
 /// Declaration of Input //// 
 
-    float D = 0.95,t = 1000, LHR,cool,cool_act,ch_pow,bun_pow;
+    float LHR,cool,cool_act,ch_pow,bun_pow;
     string radius, temperature;
     const double rad1 = 0.00,rad2 = 0.6100,pi = 3.1415926;
 
@@ -61,12 +61,12 @@ outputFile<<setfill('*')<<setw(80)<<"*"<<endl;
 
 //// Linear Heat Rating Calculation
 	      
-  float  Qw , Nom ;
-  const double in_len = 49.53 , conv_eff = 0.95 , num = 37 , N = 12;
-  Qw = conv_eff * ch_pow * 1000;
-  Nom = in_len * num * N;
-  LHR = Qw/Nom;
-//cout << LHR << "\n";
+  	float  Qw , Nom ;
+  	const double in_len = 49.53 , conv_eff = 0.95 , num = 37 , N = 12;
+  	Qw = conv_eff * ch_pow * 1000;
+  	Nom = in_len * num * N;
+  	LHR = Qw/Nom;
+	//cout << LHR << "\n";
 
 ///// Declaration of constants/////
 
@@ -101,16 +101,16 @@ outputFile<<setfill('*')<<setw(80)<<"*"<<endl;
 
 int user ;
 bool cal = true ;
-while (cal != false) {
-
+while (cal != false) 
+{
 //string roz = "1. Rozon-correlation" ;
 //string ite = "2. Iteration for temperature calculation" ;
 cout << "Please select option for Fuel Temperature calculation: " << endl ;
-cout << "\n 1. Rozon-correlation" << endl ;
-cout << "\n 2. Iteration for temperature calculation" << endl ;
-cout << "\n 3. Manual for Instruction" << endl ;
-cout << "\n 4. Contact Author of code" << endl ;
-cout << "\n 5. Exit" << endl ;
+cout << "1. Rozon-correlation" << endl ;
+cout << "2. Iteration for temperature calculation" << endl ;
+cout << "3. Manual for Instruction" << endl ;
+cout << "4. Contact Author of code" << endl ;
+cout << "5. Exit" << endl ;
 cout << "Make selection and press return: " << endl ;
 cin >> user ;
 
@@ -118,18 +118,53 @@ switch (user)
 {
 case 1:
   
-    cout << "\n Calculation of Temperature by Rozon Correlation: " ;
+    cout << "\n Calculation of Temperature by Rozon Correlation: " << "\n" ;
 	cout<<setfill('$')<<setw(80)<<"$"<<endl;	
-	outputFile << "\n Calculation of Temperature by Rozon Correlation: " << "\n" ;
-	outputFile << setfill('$') << setw(80) << "$" << endl;	
+	outputFile << "\n #Calculation of Temperature by Rozon Correlation: " << "\n" ;
+	outputFile << setfill('#') << setw(80) << "#" << "\n" ;	
 
 ////// Rozon Correlation ///////////
 	cout << "\n Input Bundle Power in KW: " ;
 	cin >> bun_pow ;
 	//const double roz1 = 0.476 , roz2 = 2.267e-4 ;
-	float rozT , fu_t ;
+	float rozT , fu_t , Droz ;
+	Droz = 0.95 ;
 	rozT = cool_act + 273.15 ;
 	fu_t = rozT + (roz1*bun_pow) + (roz2*bun_pow*bun_pow) ;
+
+	float aroz,broz,croz,droz,eroz,froz,groz,betaroz,etaroz;
+	///const double B1=40.4 , B2=464 , B3=1.216e-4 , B4=1.867e-3 , B5=0.0191 ;
+
+if (0<fu_t && 2840>fu_t)
+{
+    if(fu_t<1650){
+			betaroz = 2.58-(0.58E-3*fu_t);
+			etaroz = (1-(betaroz*(1.0-Droz)))/(1-(betaroz*(1.0-0.95)));
+			aroz = B1/(B2+fu_t);
+			broz = exp(B4*fu_t);
+			croz = B3*broz;
+			droz = etaroz*(aroz+croz);
+			eroz = (8*pi*droz);
+			froz = (LHR/eroz);
+			groz = (fu_t-froz);
+			//cout<< g << "\n";
+			}		
+    if(1650<fu_t){ 
+			betaroz = 2.58-(0.58E-3*fu_t);
+			etaroz = (1-(betaroz*(1.0-Droz)))/(1-(betaroz*(1.0-0.95)));
+			aroz = B1/(B2+fu_t);
+			broz = exp(B4*fu_t);
+			croz = B3*broz;
+			droz = etaroz*(B5+croz);
+			eroz = (8*pi*droz);
+			froz = (LHR/eroz);
+			groz = (fu_t-froz);
+			//cout<< g << "\n";
+    		}
+}
+else{
+    cout<<"Fuel temeprature outside calculation range""\n";
+   	}
 
 //// Calculation of conductivity coefficient of Gap ////
  /*   
@@ -151,8 +186,13 @@ case 1:
     const double H=6.9e3;					/// Ross_Stoute - mohr
     const double P=100;					    /// sphwr - eq -10mpa
 */   
-    outputFile << "radius - " << rad2 << "\t\t";
+    outputFile << "#Radius" << "\t\t";
+    outputFile << "#Temperature" << "\n";
+    outputFile << rad1 << "\t\t";
     outputFile << fu_t << "\n";
+    outputFile << rad2 << "\t\t";
+    outputFile << groz << "\n";
+    
     double a1roz,c1roz,d1roz,e1roz,f1roz,kmixroz,keqgproz,keqsroz,ktotroz;
     a1roz = (Const*(r1+r2))+geq;   // Ross & Stoute
   
@@ -189,7 +229,7 @@ case 1:
       {
 		aa1roz = 2*pi*gapdroz*ktotroz;
 		aa2roz = LHR/aa1roz;
-		aa3roz = fu_t-aa2roz;
+		aa3roz = groz-aa2roz;
 		//cout << aa3 << "\n";
 		outputFile << gapdroz << "\t\t";
 		outputFile << aa3roz << "\n";
@@ -252,45 +292,55 @@ for (float Rcoroz = sheath_thickroz ; Rcoroz < coolant_rad ; Rcoroz = Rcoroz+0.0
 		outputFile << temp2roz << "\n";
 	}
 ///////////////////////////////////////////Termination of Rozon - correlation /////////////////////////////////////////////
+		cout << "Iterations Completed!\n";
+		cout<< "Done Writing!\n";
+		outputFile.close() ;
 break ;
 
 case 2 :
 		
-    cout << "\n Calculation of Temperature by Iteration: " ;
+    cout << "\n Calculation of Temperature by Iteration: " << endl ;
 	cout<<setfill('$')<<setw(80)<<"$"<<endl;	
-	outputFile << "\n Calculation of Temperature by Iteration: " << "\n" ;
-	outputFile << setfill('$') << setw(80) << "$" << endl;	
+	outputFile << "\n #Calculation of Temperature by Iteration: " << "\n" ;
+	outputFile << setfill('#') << setw(80) << "#" << "\n" ;	
   
   //// Calculation of fuel conductivity ////
-ITER :	      
-    float a,b,c,d,e,f,g,beta,eta;
+
+	float t , D ;
+	D = 0.95 ;
+	t = 1200 ; 
+
+ITER :	 
+
+	float a,b,c,d,e,f,g,beta,eta;
 	///const double B1=40.4 , B2=464 , B3=1.216e-4 , B4=1.867e-3 , B5=0.0191 ;
-    if (0<t && 2840>t){
-      if(t<1650){
-				beta = 2.58-(0.58E-3*t);
-				eta = (1-(beta*(1.0-D)))/(1-(beta*(1.0-0.95)));
-				a = B1/(B2+t);
-				b = exp(B4*t);
-				c = B3*b;
-				d = eta*(a+c);
-				e = (8*pi*d);
-				f = (LHR/e);
-				g = (t-f);
-				//cout<< g << "\n";
-				}		
-      if(1650<t){ 
-				beta = 2.58-(0.58E-3*t);
-				eta = (1-(beta*(1.0-D)))/(1-(beta*(1.0-0.95)));
-				a = B1/(B2+t);
-				b = exp(B4*t);
-				c = B3*b;
-				d = eta*(B5+c);
-				e = (8*pi*d);
-				f = (LHR/e);
-				g = (t-f);
-				//cout<< g << "\n";
-     			}
-    				}
+if (0<t && 2840>t)
+{
+    if(t<1650){
+			beta = 2.58-(0.58E-3*t);
+			eta = (1-(beta*(1.0-D)))/(1-(beta*(1.0-0.95)));
+			a = B1/(B2+t);
+			b = exp(B4*t);
+			c = B3*b;
+			d = eta*(a+c);
+			e = (8*pi*d);
+			f = (LHR/e);
+			g = (t-f);
+			//cout<< g << "\n";
+			}		
+    if(1650<t){ 
+			beta = 2.58-(0.58E-3*t);
+			eta = (1-(beta*(1.0-D)))/(1-(beta*(1.0-0.95)));
+			a = B1/(B2+t);
+			b = exp(B4*t);
+			c = B3*b;
+			d = eta*(B5+c);
+			e = (8*pi*d);
+			f = (LHR/e);
+			g = (t-f);
+			//cout<< g << "\n";
+    		}
+}
 else{
     cout<<"Fuel temeprature outside calculation range""\n";
    	}
@@ -344,7 +394,7 @@ else{
     double gapd,gap_dia;
     float aa1,aa2,aa3;
     gap_dia = rad2+gap_thick;
-    for ( gapd = rad2 ; gapd <= gap_dia ; gapd = gapd+0.0001)
+    for (gapd = rad2 ; gapd <= gap_dia ; gapd = gapd+0.0001)
       {
 		aa1 = 2*pi*gapd*ktot;
 		aa2 = LHR/aa1;
@@ -423,10 +473,11 @@ else
 	}
 
 //// ITER Stop for Temperature ////
-//// ITER Stop for Temperature ////
 
-ITER2x :	      
-    outputFile << "Radius - " << rad1 << "\t\t";
+ITER2x :
+    outputFile << "#Radius" << "\t\t";
+    outputFile << "#Temperature" << "\n";
+    outputFile << rad1 << "\t\t";
     outputFile << t << "\n";
     float ax,bx,cx,dx,ex,fx,gx,betax,etax;
     //const double B1=40.4 , B2=464 , B3=1.216e-4 , B4=1.867e-3 , B5=0.0191 , pi=3.1415926;
@@ -572,29 +623,40 @@ for ( double cladr = gap_diax ; cladr <= sheath_thickx ; cladr = cladr+0.0001)
 	outputFile << Rco << "\t\t";
 	outputFile << temp2x << "\n";
 	}
+	cout << "Iterations Completed!\n";
+	cout<< "Done Writing!\n";
+	outputFile.close() ;
 break ;
 
 case 3 :
-  cout << "Manual  - Hyperlink" << endl ;
+	cout << "Manual  - Hyperlink" << endl ;
+	outputFile << "Manual  - Hyperlink" << endl ;
+	outputFile.close() ;
 break ;
 
 case 4 :
-  cout << "Contact by email - alokjha@npcil.co.in" << endl ;
+	cout << "Contact by email - alokjha@npcil.co.in" << endl ;
+  	outputFile << "Contact by email - alokjha@npcil.co.in" << endl ;
+	outputFile.close() ;
 break ;
 
 case 5 :
   cout << "Program Terminated. \n" ;
+  outputFile << "Program Terminated. \n" ;
+  outputFile.close() ;
   cal = false ;
 break ;
 
 default :
   cout << "Make valid choice \n" ;
   cin >> user ;
-break ;
+  //cin.clear() ;
+  break ;
 }
-outputFile.close();
-cout << "Iterations Completed!\n";
-cout<< "Done Writing!\n";
+//while (cal != false) ;
+//outputFile.close();
 return 0;
 }
 }
+
+
