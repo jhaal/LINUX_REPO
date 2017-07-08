@@ -17,7 +17,7 @@ int main ()
   */
   ///////////////////////////////////////////////// Calculation of fuel conductivity /////////////////////////////////////
   
-            double t, D, LHR, cool;
+        double t, D, LHR, cool;
 	    const double k1=40.4;
 	    const double k2=464;
 	    const double k3=1.216e-4;
@@ -79,7 +79,7 @@ int main ()
   
  ////////////////////////////// Write the results in file for fuel data ///////////////////////////////////////
   
-                             string radius, temperature;
+                 string radius, temperature;
 			     const double rad1=0.00;
 			     const double rad2=0.61;
 			     outputFile <<"#radius"<<"\t\t";

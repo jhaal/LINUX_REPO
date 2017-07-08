@@ -20,19 +20,20 @@ cout<<"*"<<setfill(' ')<<setw(80)<<"*"<<endl;
 cout<<"*"<<setfill(' ')<<setw(80)<<"*"<<endl;	
 cout<<setfill('*')<<setw(80)<<"*"<<endl;	
 
-/*
+
   ofstream outputFile;
-  outputFile.open("Fuel_Cent_Temp_corr.txt");
-*/  
+  outputFile.open("FCLT_PLOT.txt");
+  
 
 /// Option to Write user defined Output Filename /////
-
+/*
   ofstream outputFile;
   string filename;
   cout<<"\n Enter a file name : ";
   getline (cin, filename);
   filename += ".txt";
   outputFile.open( filename.c_str() );
+*/
 
 outputFile<<setfill('#')<<setw(80)<<"#"<<endl;	
 outputFile<<"#"<<setfill(' ')<<setw(80)<<"#"<<endl;	
@@ -118,11 +119,25 @@ switch (user)
 {
 case 1:
   
-    cout << "\n Calculation of Temperature by Rozon Correlation: " << "\n" ;
-	cout<<setfill('$')<<setw(80)<<"$"<<endl;	
+	cout << "\n Calculation of Temperature by Rozon Correlation: " << "\n" ;
+	cout<<setfill('$')<<setw(80)<<"$"<<endl;
+/*	string outputFile;
+	ofstream outputFile;
+	outputFile.open("rozon.txt");
+	outputFile<<setfill('#')<<setw(80)<<"#"<<endl;	
+	outputFile<<"#"<<setfill(' ')<<setw(80)<<"#"<<endl;	
+	outputFile<<"#"<<setfill(' ')<<setw(80)<<"#"<<endl;	
+	outputFile<<"#"<<setfill(' ')<<setw(80)<<"#"<<endl;	
+	outputFile<<"#"<<setfill(' ')<<setw(45)<<"Fuel_Temp ; TAPS-3&4"<<setfill(' ')<<setw(35)<<"#"<<endl;	
+	outputFile<<"#"<<setfill(' ')<<setw(50)<<"Alok Jha ; alokjha@npcil.co.in"<<setfill(' ')<<setw(30)<<"#"<<endl;
+	outputFile<<"#"<<setfill(' ')<<setw(52)<<"NUCLEAR POWER CORPORATION OF INDIA"<<setfill(' ')<<setw(28)<<"#"<<endl;
+	outputFile<<"#"<<setfill(' ')<<setw(80)<<"#"<<endl;	
+	outputFile<<"#"<<setfill(' ')<<setw(80)<<"#"<<endl;	
+	outputFile<<"#"<<setfill(' ')<<setw(80)<<"#"<<endl;	
+	outputFile<<setfill('#')<<setw(80)<<"#"<<endl;	
 	outputFile << "\n #Calculation of Temperature by Rozon Correlation: " << "\n" ;
 	outputFile << setfill('#') << setw(80) << "#" << "\n" ;	
-
+*/
 ////// Rozon Correlation ///////////
 	cout << "\n Input Bundle Power in KW: " ;
 	cin >> bun_pow ;
@@ -299,11 +314,25 @@ break ;
 
 case 2 :
 		
-    cout << "\n Calculation of Temperature by Iteration: " << endl ;
-	cout<<setfill('$')<<setw(80)<<"$"<<endl;	
-	outputFile << "\n #Calculation of Temperature by Iteration: " << "\n" ;
-	outputFile << setfill('#') << setw(80) << "#" << "\n" ;	
-  
+	cout << "\n Calculation of Temperature by Iteration: " << endl ;
+	cout<<setfill('$')<<setw(80)<<"$"<<endl;
+/*	string outputFile1;
+	ofstream outputFile1;
+	outputFile1.open("iteration.txt");
+	outputFile1<<setfill('#')<<setw(80)<<"#"<<endl;	
+	outputFile1<<"#"<<setfill(' ')<<setw(80)<<"#"<<endl;	
+	outputFile1<<"#"<<setfill(' ')<<setw(80)<<"#"<<endl;	
+	outputFile1<<"#"<<setfill(' ')<<setw(80)<<"#"<<endl;	
+	outputFile1<<"#"<<setfill(' ')<<setw(45)<<"Fuel_Temp ; TAPS-3&4"<<setfill(' ')<<setw(35)<<"#"<<endl;	
+	outputFile1<<"#"<<setfill(' ')<<setw(50)<<"Alok Jha ; alokjha@npcil.co.in"<<setfill(' ')<<setw(30)<<"#"<<endl;
+	outputFile1<<"#"<<setfill(' ')<<setw(52)<<"NUCLEAR POWER CORPORATION OF INDIA"<<setfill(' ')<<setw(28)<<"#"<<endl;
+	outputFile1<<"#"<<setfill(' ')<<setw(80)<<"#"<<endl;	
+	outputFile1<<"#"<<setfill(' ')<<setw(80)<<"#"<<endl;	
+	outputFile1<<"#"<<setfill(' ')<<setw(80)<<"#"<<endl;	
+	outputFile1<<setfill('#')<<setw(80)<<"#"<<endl;	
+	outputFile1<< "\n #Calculation of Temperature by Iteration: " << "\n" ;
+	outputFile1<< setfill('#') << setw(80) << "#" << "\n" ;	
+*/
   //// Calculation of fuel conductivity ////
 
 	float t , D ;
@@ -655,6 +684,8 @@ default :
 }
 //while (cal != false) ;
 //outputFile.close();
+//system("bash gnuplot_script");
+system("/home/user01/OpenFOAM/test_cases/c++/coolant_temp_calculator/gnuplot_script");
 return 0;
 }
 }

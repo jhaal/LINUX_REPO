@@ -50,7 +50,7 @@ outputFile<<setfill('#')<<setw(80)<<"#"<<endl;
 
     float LHR,cool,cool_act,ch_pow,bun_pow;
     string radius, temperature;
-    const double rad1 = 0.00,rad2 = 0.6100,pi = 3.1415926;
+    const float rad1 = 0.01,rad2 = 0.6100,pi = 3.1415926;
 
     cout<<"\n Input Coolant Flow Rate (in Kg/Sec):";
     cin>>cool;
@@ -186,12 +186,12 @@ else{
     const double H=6.9e3;					/// Ross_Stoute - mohr
     const double P=100;					    /// sphwr - eq -10mpa
 */   
-    outputFile << "#Radius" << "\t\t";
+    outputFile << "#Radius" << " \t\t ";
     outputFile << "#Temperature" << "\n";
-    outputFile << rad1 << "\t\t";
-    outputFile << fu_t << "\n";
-    outputFile << rad2 << "\t\t";
-    outputFile << groz << "\n";
+    outputFile << rad1 << " \t\t ";
+    outputFile << fu_t << " \n ";
+    outputFile << rad2 << " \t\t ";
+    outputFile << groz << " \n ";
     
     double a1roz,c1roz,d1roz,e1roz,f1roz,kmixroz,keqgproz,keqsroz,ktotroz;
     a1roz = (Const*(r1+r2))+geq;   // Ross & Stoute
@@ -231,8 +231,8 @@ else{
 		aa2roz = LHR/aa1roz;
 		aa3roz = groz-aa2roz;
 		//cout << aa3 << "\n";
-		outputFile << gapdroz << "\t\t";
-		outputFile << aa3roz << "\n";
+		outputFile << gapdroz << " \t\t ";
+		outputFile << aa3roz << " \n ";
       }
 
 /// Calculation of conductivity coefficient of Zircalloy ///
@@ -259,8 +259,8 @@ else{
 		aaaa3roz=aaaa1roz/aaaa2roz;
 		aaaa4roz=aa3roz-aaaa3roz;
 		//cout << aaaa4 << "\n";
-		outputFile << cladrroz << "\t\t";
-		outputFile << aaaa4roz << "\n";
+		outputFile << cladrroz << " \t\t ";
+		outputFile << aaaa4roz << " \n ";
       }
   
 //// Coolant Conductivity calculation////
@@ -288,8 +288,8 @@ for (float Rcoroz = sheath_thickroz ; Rcoroz < coolant_rad ; Rcoroz = Rcoroz+0.0
 		temp1roz = LHR/(2*pi*Rcoroz*eqcon7roz);
 		temp2roz = aaaa4roz - temp1roz;
 		//cout << temp2 << "\n";
-		outputFile << Rcoroz << "\t\t";
-		outputFile << temp2roz << "\n";
+		outputFile << Rcoroz << " \t\t ";
+		outputFile << temp2roz << " \n ";
 	}
 ///////////////////////////////////////////Termination of Rozon - correlation /////////////////////////////////////////////
 		cout << "Iterations Completed!\n";
@@ -475,10 +475,10 @@ else
 //// ITER Stop for Temperature ////
 
 ITER2x :
-    outputFile << "#Radius" << "\t\t";
-    outputFile << "#Temperature" << "\n";
-    outputFile << rad1 << "\t\t";
-    outputFile << t << "\n";
+    outputFile << "#Radius" << " \t\t ";
+    outputFile << "#Temperature" << " \n ";
+    outputFile << rad1 << " \t\t ";
+    outputFile << t << " \n ";
     float ax,bx,cx,dx,ex,fx,gx,betax,etax;
     //const double B1=40.4 , B2=464 , B3=1.216e-4 , B4=1.867e-3 , B5=0.0191 , pi=3.1415926;
   
@@ -620,8 +620,8 @@ for ( double cladr = gap_diax ; cladr <= sheath_thickx ; cladr = cladr+0.0001)
 	temp1x = LHR/(2*pi*Rco*eqcon7x);
 	temp2x = aaaa4 - temp1x;
 	//cout << temp2 << "\n";
-	outputFile << Rco << "\t\t";
-	outputFile << temp2x << "\n";
+	outputFile << Rco << " \t\t ";
+	outputFile << temp2x << " \n ";
 	}
 	cout << "Iterations Completed!\n";
 	cout<< "Done Writing!\n";
