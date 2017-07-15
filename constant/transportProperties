@@ -1,0 +1,29 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2.4.0                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      transportProperties;
+}
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+// kinematic viscosity of heavy water is 0.9915e-6 and for light water is 0.8935e-6 m2/s
+
+transportModel Newtonian;
+
+// Laminar kinematic viscosity
+nu              nu [0 2 -1 0 0 0 0] 0.9915e-6;
+// Temperature calculation
+DT              DT [0 2 -1 0 0 0 0] 0.1;
+/*
+// Density calculation
+density         density [1 -3 0 0 0 0 0]1.1e3;
+*/
+// ************************************************************************* //
