@@ -1,0 +1,3 @@
+icoFoam_phwr.C
+
+EXE = $(FOAM_APPBIN)/icoFoam_phwr
