@@ -9,21 +9,21 @@ set size 1,1
 #set term qt
 set term pdf 
 set grid
-set xlabel 'X'
-set ylabel 'sin(x)'
-set title 'Graph'
+set xlabel 'Distance From Fuel Centerline (in cm)'
+set ylabel 'Temp (in Deg-C)'
+set title 'Fuel Temperature Profile'
 #set legend 'graph'
 set output 'FCLT_PLOT.pdf'
-plot 'FCLT_PLOT.txt' using 1:2 with lines lc rgb 'black' title 'Graph'
+plot 'FCLT_PLOT.txt' using 1:2 with lines lc rgb 'black' title 'Temperature'
 set output
 
 
 
 set term qt
 set grid
-set xlabel 'X'
-set ylabel 'sin(x)'
-set title 'Graph'
-plot 'FCLT_PLOT.txt' using 1:2 with lines lc rgb 'black' title 'Graph'
+set xlabel 'Distance From Fuel Centerline (in cm)'
+set ylabel 'Temp (in Deg-C)'
+set title 'Fuel Temperature Profile'
+plot 'FCLT_PLOT.txt' using 1:2 with lines lc rgb 'black' title 'Temperature'
 set output
 
