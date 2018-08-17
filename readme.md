@@ -10,6 +10,10 @@ Some software is written for simple physics calculation like temeprature calcula
 
 * **Alok Jha**
 
+## github.io access
+
+* https://jhaal.github.io/LINUX_REPO/
+
 ## License
 
 This is licensed under the MIT License
